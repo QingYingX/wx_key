@@ -673,7 +673,16 @@ class ImageKeyService {
       });
       if (aesKey == null) {
         AppLogger.error('无法从内存中获取AES密钥');
-        return ImageKeyResult.failure('无法从内存中获取AES密钥');
+        return ImageKeyResult.failure(
+          '无法从内存中获取AES密钥。\n'
+          '建议操作步骤：\n'
+          '1. 彻底关闭当前登录的微信。\n'
+          '2. 重新启动微信并登录。\n'
+          '3. 打开朋友圈，寻找带图片的动态。\n'
+          '4. 点击图片，再点击右上角打开大图。\n'
+          '5. 重复步骤3和4，大概2-3次即可。\n'
+          '6. 迅速回到工具内获取图片密钥。',
+        );
       }
       AppLogger.success('成功获取AES密钥: ${aesKey.substring(0, 16)}');
 
